@@ -5,13 +5,12 @@ from .serializer import ProductSerializer
 from .models import Product
 from rest_framework import status
 
-# Create your views here.
 @api_view(['GET', 'POST'])
 
 def products_list(request):
     if request.method == 'GET':
-        song = Product.objects.all()
-        serializer = ProductSerializer(song, many=True)
+        product = Product.objects.all()
+        serializer = ProductSerializer(product, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
@@ -21,4 +20,26 @@ def products_list(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET','PUT','DELETE'])
+def product_detail(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+
+    if request.method == "GET":
+        serializer = ProductSerializer(product)
+        return Response(serializer.data)
+
+
+    elif request.method == 'PUT':
+        serializer = ProductSerializer(product, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+
+    elif request.method == 'DELETE':
+        serializer = ProductSerializer(product)
+        product.delete()
+        return Response(serializer.data, status=status.HTTP_200_OK)
