@@ -31,21 +31,23 @@ def post_products(request):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET','PUT','DELETE'])
+@api_view(['GET'])
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
-
     if request.method == "GET":
         serializer = ProductSerializer(product)
         return Response(serializer.data)
 
 
-    elif request.method == 'PUT':
+@api_view(['PUT','DELETE'])
+@permission_classes([IsAuthenticated])
+def edit_products(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == 'PUT':
         serializer = ProductSerializer(product, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
-
 
     elif request.method == 'DELETE':
         serializer = ProductSerializer(product)
