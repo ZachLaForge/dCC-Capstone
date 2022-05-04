@@ -32,6 +32,7 @@ def post_products(request):
 
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == "GET":
