@@ -4,16 +4,24 @@ from rest_framework.response import Response
 from .serializer import ProductSerializer
 from .models import Product
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.decorators import api_view, permission_classes
 
-@api_view(['GET', 'POST'])
 
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
 def products_list(request):
     if request.method == 'GET':
         product = Product.objects.all()
         serializer = ProductSerializer(product, many=True)
         return Response(serializer.data)
 
-    elif request.method == 'POST':
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def post_products(request):
+    if request.method == 'POST':
         serializer = ProductSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
