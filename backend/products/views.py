@@ -54,3 +54,12 @@ def edit_products(request, pk):
         serializer = ProductSerializer(product)
         product.delete()
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['PATCH'])
+@permission_classes([AllowAny])
+def partial_update(request, pk=None):
+    product = get_object_or_404(Product, pk=pk)
+    serializer = ProductSerializer(product, data=request.data, partial=True)
+    serializer.is_valid(raise_exception=True)
+    serializer.save()
+    return Response(serializer.data)
