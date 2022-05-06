@@ -55,6 +55,7 @@ def edit_products(request, pk):
         product.delete()
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+
 @api_view(['PATCH'])
 @permission_classes([AllowAny])
 def partial_update(request, pk=None):
