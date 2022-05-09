@@ -13,11 +13,13 @@ import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import ProductViewer from "./components/ProductViewer/ProductViewer";
 import SearchBar from "./components/SearchBar/SearchBar";
+import AddProduct from "./components/AddProduct/AddProduct";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
 import { Component } from "react";
 import { render } from "react-dom";
+
 
 
 class App extends Component {
@@ -100,6 +102,7 @@ class App extends Component {
             element={
               <PrivateRoute>
                 <HomePage  />
+                <AddProduct />
                 <SearchBar newFilter={this.filterProduct2} search={this.state.products} filterTrigger= {this.filterProducts}/>
                 <ProductViewer products = {this.state.filteredProducts} delete ={this.deleteProduct}/>
               </PrivateRoute>
