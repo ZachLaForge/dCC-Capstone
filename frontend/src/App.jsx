@@ -4,9 +4,9 @@ import "./App.css";
 import axios from 'axios';
 
 // Pages Imports
-import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import HomePage from "./pages/HomePage/HomePage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -16,8 +16,8 @@ import SearchBar from "./components/SearchBar/SearchBar";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
-import { render } from "react-dom";
 import { Component } from "react";
+import { render } from "react-dom";
 
 
 class App extends Component {
@@ -41,13 +41,17 @@ class App extends Component {
         filteredProducts: response.data
         
     });
- }
+  }
 
+  // Need to figure out a better way to use this for AUTHORIZED users only
   async deleteProduct(ID){
-    let response = await axios.delete(`http://127.0.0.1:8000/api/products/${ID}/`);
+    const jwt = localStorage.getItem('token');
+    let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjUyNTQ0MDI5LCJpYXQiOjE2NTE2ODAwMjksImp0aSI6IjVhY2MyZmFiNzdjODQwMGNhOWIxMTc1NjEwNzVhMTc4IiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImZpcnN0X25hbWUiOiIifQ.hh6IPj4AcBj4ehv4tDZ5wirKn4xF4G4qfVJk_NKuZfI'
+    let response = await axios.delete(`http://127.0.0.1:8000/api/products/edit/${ID}/`,{headers: {Authorization: 'Bearer ' + token}});
            console.log(response)
         window.location.reload();
     }
+  
     
 
     filterProduct2 = (searchTerm) =>{
@@ -64,6 +68,12 @@ class App extends Component {
             if (productString.includes(userProductSearch)){
                 return product
             }
+            // Currently working for #s only the initial NL isn't filtering
+            let nlidString = product.nlid
+            let userNlidSearch = searchTerm.toLowerCase()
+              if(nlidString.includes(userNlidSearch)){
+                return product
+              }
           }); 
           this.setState({
               filteredProducts : filteredResults
@@ -84,14 +94,14 @@ class App extends Component {
     return (
       <div className = 'center'>
         <Navbar />
-        <SearchBar newFilter={this.filterProduct2} search={this.state.products} filterTrigger= {this.filterProducts}/>
-        <ProductViewer products = {this.state.filteredProducts} delete ={this.deleteProduct}/>
         <Routes>
           <Route
             path="/"
             element={
               <PrivateRoute>
-                <HomePage />
+                <HomePage  />
+                <SearchBar newFilter={this.filterProduct2} search={this.state.products} filterTrigger= {this.filterProducts}/>
+                <ProductViewer products = {this.state.filteredProducts} delete ={this.deleteProduct}/>
               </PrivateRoute>
             }
           />
