@@ -76,7 +76,13 @@ class App extends Component {
             // Currently working for #s only the initial NL isn't filtering
             let nlidString = product.nlid
             let userNlidSearch = searchTerm.toLowerCase()
-              if(nlidString.includes(userNlidSearch)){
+            if(nlidString.includes(userNlidSearch)){
+                return product
+              }
+            //search by Modify true or false 
+            let modifyString = product.modify.toString()
+            let userModifySearch = searchTerm.toLowerCase()
+            if(modifyString.includes(userModifySearch)){
                 return product
               }
           }); 

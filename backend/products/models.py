@@ -17,5 +17,3 @@ class Product(models.Model):
 # Create your models here.
 # Potentially need to create another model for pending changes for the front end functionality
 
-# class InfoChecker
-# created an additional field modify for boolean response. Hope to tie into front end user stories for data integrity checks

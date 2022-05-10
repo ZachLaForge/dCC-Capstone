@@ -59,7 +59,7 @@ class AddProduct extends Component {
             <div className="center">
                 <br/>
                  <h1>
-                    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+                    <nav>
                         <a class="navbar-brand"><span class="purple">Add to </span> <span class="grey">Products</span></a>
                     </nav>
                  </h1>
@@ -82,7 +82,7 @@ class AddProduct extends Component {
                                 <td><input type = "text" name = "msrp" value={this.state.msrp} onChange= {this.handleChange}placeholder="MSRP"/></td>
                                 <td><input type = "text" name = "weight" value={this.state.weight} onChange= {this.handleChange}placeholder="Weight"/></td> 
                                 <td><input type = "text" name = "sales" value={this.state.sales} onChange= {this.handleChange}placeholder="Sales"/></td>               
-                                <td><input type = "text" name = "modify" value={this.state.modify} onChange= {this.handleChange}placeholder="Modify Y/N"/></td>
+                                <td><input type = "text" name = "modify" value={this.state.modify} onChange= {this.handleChange}placeholder="Modify T/F"/></td>
                                 <td><button type = "submit" value = "Add Product">Add Product </button></td>
                             </tr>                
                     </table>

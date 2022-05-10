@@ -86,13 +86,14 @@ td {
   font-size: 18px;
 }
 h1 {
-  color: #E0DBD1;
-  font-size: 50px;
   text-align: center;
 }
 .grey {
   color: rgb(73, 73, 73);
+  font-size: 50px;
 }
 .purple {
   color: rgb(100, 3, 228);
+  font-size: 50px;
 }
+

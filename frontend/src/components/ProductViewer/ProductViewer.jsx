@@ -24,7 +24,7 @@ const ProductViewer  = (props) => {
                         <td>{product.msrp}</td>
                         <td>{product.weight}</td>
                         <td>{product.sales}</td>
-                        <td>{product.modify}</td>
+                        <td>{product.modify.toString()}</td>
                         <td><button onClick = {()=> props.delete(product.id)}>Delete Product</button></td>
                     </tr>
                 );
