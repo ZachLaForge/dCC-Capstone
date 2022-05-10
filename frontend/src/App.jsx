@@ -105,7 +105,7 @@ class App extends Component {
             element={
               <PrivateRoute>
                 <HomePage  />
-                <ExportReactCSV csvData={this.state.products} fileName={this.state.fileName} />
+                <ExportReactCSV csvData={this.state.filteredProducts} fileName={this.state.fileName} />
                 <AddProduct />
                 <SearchBar newFilter={this.filterProduct2} search={this.state.products} filterTrigger= {this.filterProducts}/>
                 <ProductViewer products = {this.state.filteredProducts} delete ={this.deleteProduct}/>
