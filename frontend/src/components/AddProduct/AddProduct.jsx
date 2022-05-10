@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import axios from 'axios';
-
+import React from 'react';
 
 class AddProduct extends Component {
     constructor(props) {

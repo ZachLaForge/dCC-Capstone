@@ -2,6 +2,7 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import axios from 'axios';
+import React from "react";
 
 // Pages Imports
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -14,6 +15,7 @@ import Footer from "./components/Footer/Footer";
 import ProductViewer from "./components/ProductViewer/ProductViewer";
 import SearchBar from "./components/SearchBar/SearchBar";
 import AddProduct from "./components/AddProduct/AddProduct";
+import { ExportReactCSV } from "./components/ExportToCsv/ExportToCsv";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
@@ -27,7 +29,8 @@ class App extends Component {
       super(props);
       this.state = {
           products : [],
-          filteredProducts : []
+          filteredProducts : [],
+          fileName: 'Products'
         }
   }
    
@@ -102,6 +105,7 @@ class App extends Component {
             element={
               <PrivateRoute>
                 <HomePage  />
+                <ExportReactCSV csvData={this.state.products} fileName={this.state.fileName} />
                 <AddProduct />
                 <SearchBar newFilter={this.filterProduct2} search={this.state.products} filterTrigger= {this.filterProducts}/>
                 <ProductViewer products = {this.state.filteredProducts} delete ={this.deleteProduct}/>
