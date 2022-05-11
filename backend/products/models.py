@@ -11,7 +11,7 @@ class Product(models.Model):
     cost = models.DecimalField(max_digits=5, decimal_places=2)
     msrp = models.DecimalField(max_digits=5, decimal_places=2)
     weight = models.DecimalField(max_digits=5, decimal_places=2)
-    sales = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    sales = models.IntegerField(blank=True, default=0)
     modify = models.BooleanField(default=False)
 
 # Create your models here.
