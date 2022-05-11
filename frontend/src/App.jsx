@@ -16,11 +16,14 @@ import ProductViewer from "./components/ProductViewer/ProductViewer";
 import SearchBar from "./components/SearchBar/SearchBar";
 import AddProduct from "./components/AddProduct/AddProduct";
 import { ExportReactCSV } from "./components/ExportToCsv/ExportToCsv";
+import BestSellingGraph from "./components/BestSellingGraph/BestSellingGraph";
+
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
 import { Component } from "react";
 import { render } from "react-dom";
+import Chart from "react-google-charts";
 
 
 
@@ -28,6 +31,7 @@ class App extends Component {
   constructor(props) {
       super(props);
       this.state = {
+          data: [],
           products : [],
           filteredProducts : [],
           fileName: 'Products'
@@ -43,7 +47,8 @@ class App extends Component {
     console.log(response);
     this.setState({
         products: response.data,
-        filteredProducts: response.data
+        filteredProducts: response.data,
+        data: response.data,
         
     });
   }
@@ -111,7 +116,8 @@ class App extends Component {
             element={
               <PrivateRoute>
                 <HomePage  />
-                <ExportReactCSV csvData={this.state.filteredProducts} fileName={this.state.fileName} />
+                <ExportReactCSV csvData={this.state.filteredProducts} fileName={this.state.fileName}/>
+                <BestSellingGraph data={this.state.data}/>
                 <AddProduct />
                 <SearchBar newFilter={this.filterProduct2} search={this.state.products} filterTrigger= {this.filterProducts}/>
                 <ProductViewer products = {this.state.filteredProducts} delete ={this.deleteProduct}/>

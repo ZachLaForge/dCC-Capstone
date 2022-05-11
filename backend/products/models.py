@@ -6,6 +6,7 @@ from authentication.models import User
 
 class Product(models.Model):
     sku = models.CharField(max_length=50)
+    design = models.CharField(max_length=50,blank=True)
     nlid = models.CharField(max_length=30)
     description = models.CharField(max_length=60)
     cost = models.DecimalField(max_digits=5, decimal_places=2)

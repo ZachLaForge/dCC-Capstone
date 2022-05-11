@@ -34,6 +34,7 @@ class AddProduct extends Component {
     async addProduct(){
         const product = {
             sku: this.state.sku,
+            design: this.state.design,
             nlid: this.state.nlid,
             description: this.state.description,
             cost: this.state.cost,
@@ -67,6 +68,7 @@ class AddProduct extends Component {
                 <form onSubmit = {this.handleSubmit}>
                     <table>
                                 <th>SKU</th>
+                                <th>Design</th>
                                 <th>NLID</th>
                                 <th>Description</th>
                                 <th>Cost</th>
@@ -75,14 +77,15 @@ class AddProduct extends Component {
                                 <th>Sales</th>
                                 <th>Modify</th>
                             <tr>
-                                <td><input type = "text" size = "40" name = "sku" value={this.state.sku} onChange= {this.handleChange} placeholder="SKU"/></td>                          
+                                <td><input type = "text" size = "40" name = "sku" value={this.state.sku} onChange= {this.handleChange} placeholder="SKU"/></td>
+                                <td><input type = "text" name = "design" value={this.state.design} onChange= {this.handleChange}placeholder="Design"/></td>                          
                                 <td><input type = "text" name = "nlid" value={this.state.nlid} onChange= {this.handleChange}placeholder="NLID"/></td>                         
                                 <td><input type = "text" name = "description" value={this.state.description} onChange= {this.handleChange}placeholder="Product Description"/></td>                          
                                 <td><input type = "text" name = "cost" value={this.state.cost} onChange= {this.handleChange}placeholder="Cost"/></td>  
                                 <td><input type = "text" name = "msrp" value={this.state.msrp} onChange= {this.handleChange}placeholder="MSRP"/></td>
                                 <td><input type = "text" name = "weight" value={this.state.weight} onChange= {this.handleChange}placeholder="Weight"/></td> 
                                 <td><input type = "text" name = "sales" value={this.state.sales} onChange= {this.handleChange}placeholder="Sales"/></td>               
-                                <td><input type = "text" name = "modify" value={this.state.modify} onChange= {this.handleChange}placeholder="Modify T/F"/></td>
+                                <td><input type = "text" name = "modify" value={this.state.modify} onChange= {this.handleChange}placeholder="true or false"/></td>
                                 <td><button type = "submit" value = "Add Product">Add Product </button></td>
                             </tr>                
                     </table>

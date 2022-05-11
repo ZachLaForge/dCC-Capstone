@@ -6,6 +6,7 @@ const ProductViewer  = (props) => {
         <table>
             <thead>
                 <th>SKU</th>
+                <th>Design</th>
                 <th>NLID</th>
                 <th>Description</th>
                 <th>Cost</th>
@@ -18,6 +19,7 @@ const ProductViewer  = (props) => {
                 return(
                     <tr>
                         <td>{product.sku}</td>
+                        <td>{product.design}</td>
                         <td>{product.nlid}</td>
                         <td>{product.description}</td>
                         <td>{product.cost}</td>
