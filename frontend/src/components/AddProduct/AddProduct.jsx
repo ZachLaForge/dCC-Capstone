@@ -7,6 +7,7 @@ class AddProduct extends Component {
         super(props);
         this.state = {
             sku: '',
+            design: '',
             nlid:'',
             description:'',
             cost:'',

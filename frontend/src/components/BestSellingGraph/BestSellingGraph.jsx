@@ -16,10 +16,10 @@ const BestSellingGraph = (props) => {
             return design.design
         });
 
-        let distinctDesigs = [...new Set(designs)]
+        let distinctDesigns = [...new Set(designs)]
 
         
-        let designArrays = distinctDesigs.map(design => {
+        let designArrays = distinctDesigns.map(design => {
             let total = 0 
             props.data.map(el=>{
                 if(el.design == design){
@@ -27,7 +27,7 @@ const BestSellingGraph = (props) => {
                 }
             })
            
-            return [design, total, "silver"]
+            return [design, total, ""]
       
         });
 

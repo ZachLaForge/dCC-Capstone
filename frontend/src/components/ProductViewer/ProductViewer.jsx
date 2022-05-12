@@ -28,6 +28,8 @@ const ProductViewer  = (props) => {
                         <td>{product.sales}</td>
                         <td>{product.modify.toString()}</td>
                         <td><button onClick = {()=> props.delete(product.id)}>Delete Product</button></td>
+                        {/* <td><button type="onClick" class="btn btn-danger">Danger</button></td> */}
+                        {/* Would like my delete button to look more like this */}
                     </tr>
                 );
             })}
